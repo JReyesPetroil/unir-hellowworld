@@ -1,3 +1,7 @@
 result.xml
 __pycache__
 .pytest_cache
+docker/jenkins/jenkins-data/
+docker/jenkins/jenkins_agent
+docker/jenkins/jenkins_agent.pub
+*.DS_Store
