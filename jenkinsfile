@@ -11,6 +11,7 @@ pipeline {
         
         stage('wiremock') {
             steps {
+                sh 'mkdir -p downloads'
                 fileOperations([
                     fileDownloadOperation(userName: '', password: '', proxyHost: '', proxyPort: '', targetFileName: 'wiremock.jar', url: 'https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/3.10.0/wiremock-standalone-3.10.0.jar', targetLocation: 'downloads/',)
                 ])
