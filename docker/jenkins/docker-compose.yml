@@ -14,6 +14,7 @@ services:
      - ./var/run/docker.sock:/var/run/docker.sock
     expose:
      - 4444
+
   agent:
     build:
       context: .
@@ -25,3 +26,16 @@ services:
       - 22
     environment:
       - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDknPAo0bJ73i3KdclWY4d1ZP761qcEGybK9Mya+5y+Hdxkg7RAXKwraB3JVeBsRlTex7qiVc13xuDAZaqnU9xaeDmKBnwNy2wh7+B/bqjSV3tFT+9peD6uUJuz1CJM3+ezELoHB3SXR4mHPwo56C/iS8SREtYkGzJHsdfB5FC6YwLXmsj+aXqifJMuh9FOff94hczyMNSVRAhfwmUHRF21kkNMSlhHKE3Uz38llsjYnZq47X6XPUhlXbo/Ah9C2ITTFII7bsKO/xi/222wHnWvDyXloUjV7aev15nHZkRyfTvMmX49Pj0hSGUlWrGO+ARsdz5Y2/oDWY4oUqjhFk617yiyvYbNfYXOoTjfVC9/vw2yP/fE2AvB6Gr/NmqkpDgnJlaxLFc+z/1fSzn1wtA14ffiPO0gVQpdz665wjaTddCYSJWpnHuiL3qlUQgIJpvjsZ/aTeySr/UGXruekF8IBe2BhYLqLIXMKi2H8RR84lvVY8I2ckQzZSEAByyX4EU= mzt-jreyes@MacBook-Pro-de-Jesus.local
+
+  agent2:
+    build:
+      context: .
+      dockerfile: Dockerfile.agent
+    privileged: true
+    user: root
+    container_name: agent2
+    expose:
+      - 22
+    environment:
+      - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDknPAo0bJ73i3KdclWY4d1ZP761qcEGybK9Mya+5y+Hdxkg7RAXKwraB3JVeBsRlTex7qiVc13xuDAZaqnU9xaeDmKBnwNy2wh7+B/bqjSV3tFT+9peD6uUJuz1CJM3+ezELoHB3SXR4mHPwo56C/iS8SREtYkGzJHsdfB5FC6YwLXmsj+aXqifJMuh9FOff94hczyMNSVRAhfwmUHRF21kkNMSlhHKE3Uz38llsjYnZq47X6XPUhlXbo/Ah9C2ITTFII7bsKO/xi/222wHnWvDyXloUjV7aev15nHZkRyfTvMmX49Pj0hSGUlWrGO+ARsdz5Y2/oDWY4oUqjhFk617yiyvYbNfYXOoTjfVC9/vw2yP/fE2AvB6Gr/NmqkpDgnJlaxLFc+z/1fSzn1wtA14ffiPO0gVQpdz665wjaTddCYSJWpnHuiL3qlUQgIJpvjsZ/aTeySr/UGXruekF8IBe2BhYLqLIXMKi2H8RR84lvVY8I2ckQzZSEAByyX4EU= mzt-jreyes@MacBook-Pro-de-Jesus.local
+
