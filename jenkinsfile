@@ -1,13 +1,7 @@
 pipeline {
     agent any
     
-    stages {
-        stage('GetCode') {
-            steps {
-                git 'https://github.com/JReyesPetroil/unir-hellowworld.git'
-            }
-        }
-        
+    stages {       
         stage('Build') {
             steps {
                 echo 'NO HAY NADA QUE COMPILAR'
