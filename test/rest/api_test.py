@@ -5,8 +5,8 @@ from urllib.request import urlopen
 
 import pytest
 
-BASE_URL = "http://localhost:5000"
-BASE_URL_MOCK = "http://localhost:9090"
+BASE_URL = "http://127.0.0.1:5000"
+BASE_URL_MOCK = "http://127.0.0.1:9090"
 DEFAULT_TIMEOUT = 2  # in secs
 
 @pytest.mark.api
@@ -23,6 +23,26 @@ class TestApi(unittest.TestCase):
         )
         self.assertEqual(
             response.read().decode(), "3", "ERROR ADD"
+        )
+
+    def test_api_multiply(self):
+        url = f"{BASE_URL}/calc/multiply/10/2"
+        response = urlopen(url, timeout=DEFAULT_TIMEOUT)
+        self.assertEqual(
+            response.status, http.client.OK, f"Error en la petición API a {url}"
+        )
+        self.assertEqual(
+            response.read().decode(), "20", "ERROR MULTIPLY"
+        )
+
+    def test_api_divide(self):
+        url = f"{BASE_URL}/calc/divide/10/2"
+        response = urlopen(url, timeout=DEFAULT_TIMEOUT)
+        self.assertEqual(
+            response.status, http.client.OK, f"Error en la petición API a {url}"
+        )
+        self.assertEqual(
+            response.read().decode(), "5.0", "ERROR DIVIDE"
         )
 
     def test_api_sqrt(self):
