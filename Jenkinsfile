@@ -17,6 +17,7 @@ pipeline {
                 ])
                 sh '''
                     java -jar downloads/wiremock.jar --port 9090 --root-dir test/wiremock &
+                    sleep 5
                 '''
             }
         }
@@ -39,6 +40,7 @@ pipeline {
                             sh '''
                                 export FLASK_APP=$WORKSPACE/app/api.py
                                 flask run &
+                                sleep 5
                                 pytest --junitxml=result-rest.xml test/rest
                             '''
                         }
@@ -49,6 +51,11 @@ pipeline {
         stage('Result'){
             steps {
                 junit 'result*.xml'
+            }
+        }
+        stage('Clean'){
+            steps {
+                cleanWs()
             }
         }
     }
