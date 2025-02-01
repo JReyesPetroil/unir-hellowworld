@@ -19,6 +19,12 @@ RUN wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.6.3.tgz  &
     ln -s /opt/apache-jmeter-5.6.3/bin/jmeter /usr/local/bin/jmeter && \
     rm apache-jmeter-5.6.3.tgz
 
+RUN wget https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/3.10.0/wiremock-standalone-3.10.0.jar
+
+RUN mkdir -p /home/jenkins/downloads/ && mv ./wiremock-standalone-3.10.0.jar downloads/wiremock-standalone-3.10.0.jar && \
+    chmod +x /home/jenkins/downloads/wiremock-standalone-3.10.0.jar
+ 
+
 RUN pip install --no-cache-dir bandit --break-system-packages
 
 ENV JMETER_HOME=/opt/apache-jmeter-5.6.3
