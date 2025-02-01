@@ -1,6 +1,7 @@
 pipeline {
     agent any
     stages {       
+        
         stage('Unit') {
             steps {
                 catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE'){
@@ -48,8 +49,8 @@ pipeline {
             }
         }
         stage('Performance'){
-            catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE'){
-                steps {
+            steps {
+                catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE'){
                     sh '''
                         export FLASK_APP=app/api.py
                         flask run -p 5000 &
